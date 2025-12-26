@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AyundaShop Finance OS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            },
+            colors: {
+              primary: {
+                50: '#fff7ed',
+                100: '#ffedd5',
+                200: '#fed7aa',
+                300: '#fdba74',
+                400: '#fb923c',
+                500: '#f97316',
+                600: '#ea580c', // Main Orange
+                700: '#c2410c',
+                800: '#9a3412',
+                900: '#7c2d12',
+              },
+              slate: {
+                750: '#2d3748',
+                800: '#1e293b', 
+                850: '#172033', // Custom Card Bg
+                900: '#0f172a', // Sidebar
+                950: '#020617', // Main Bg
+              }
+            },
+            boxShadow: {
+              'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.3)',
+              'card': '0 0 0 1px rgba(255,255,255,0.05), 0 2px 8px rgba(0,0,0,0.2)',
+              'glow': '0 0 15px rgba(234, 88, 12, 0.15)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #020617; 
+        color: #e2e8f0;
+      }
+      /* Dark Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0f172a; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #334155; 
+        border-radius: 4px;
+        border: 2px solid #0f172a;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #475569; 
+      }
+      
+      /* Input Date Dark Mode Fix */
+      input[type="date"] {
+        color-scheme: dark;
+      }
+    </style>
+
+<link rel="stylesheet" href="/index.css">
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-By5tVvc2.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+</body>
+</html>
