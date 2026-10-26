@@ -18,7 +18,7 @@
 <form id="recordForm"><input type="hidden" id="recordId"><div class="formgrid">
 <div><label for="advertiser">Nama pengiklan (opsional)</label><input id="advertiser" placeholder="Nama pengiklan"></div>
 <div><label for="store">Nama toko *</label><input id="store" required placeholder="Contoh: AYUNDASHOP"></div>
-<div><label for="saverPct">Persentase saver</label><select id="saverPct"><option value="30">30% saver / 70% COD</option><option value="40">40% saver / 60% COD</option><option value="35">35% saver / 65% COD</option><option value="25">25% saver / 75% COD</option><option value="20">20% saver / 80% COD</option><option value="50">50% saver / 50% COD</option></select></div>
+<div><label for="saverPct">Persentase saver</label><select id="saverPct"><option value="30">30% saver / 70% COD masuk</option><option value="40">40% saver / 60% COD masuk</option><option value="50">50% saver / 50% COD masuk</option></select></div>
 <div><label for="openingSaver">Saldo saver awal (hanya awal data)</label><input id="openingSaver" type="number" min="0" step="1" value="0"></div><div><label for="openingLoss">Minus awal yang belum tertutup (Rp)</label><input id="openingLoss" type="number" min="0" step="1" value="0"></div>
 <div><label for="cod1">COD minggu 1 (Rp)</label><input id="cod1" type="number" min="0" step="1" value="0"></div>
 <div><label for="cod2">COD minggu 2 (Rp)</label><input id="cod2" type="number" min="0" step="1" value="0"></div>
@@ -43,7 +43,7 @@
 <div><label>Profit akhir</label><div>Profit sebelum minus lama − minus yang dibawa dari periode sebelumnya.</div></div>
 <div><label>Carry-forward minus</label><div>Jika profit akhir negatif, minus dibawa ke periode berikutnya. Jika positif, minus lama dianggap tertutup.</div></div>
 <div><label>Pembagian profit</label><div>Hanya jika profit akhir positif: Management 50%, CS 20%, Owner 30%.</div></div>
-<div><label>COD / saver split</label><div>Default 70% / 30%, bisa diubah ke 60% / 40% atau persentase lain per toko.</div></div>
+<div><label>COD / saver split</label><div>Pilihan saver hanya 30%, 40%, atau 50%. Sisanya menjadi COD untuk pemasukan: 70%, 60%, atau 50%.</div></div>
 </div></section><div class="foot">AyundaShop Finance · Perhitungan disimpan secara lokal. Periksa hasil dengan data tutup buku asli sebelum digunakan untuk pembayaran.</div></main>
 <script>
 (function(){
