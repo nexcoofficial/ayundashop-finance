@@ -75,6 +75,7 @@ function editRecord(r){$('recordId').value=r.id;$('advertiser').value=r.advertis
 if(window.gsap&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){window.gsap.from('.top',{y:-10,opacity:0,duration:.65,ease:'power3.out'});window.gsap.from('.note',{y:8,opacity:0,duration:.55,delay:.08,ease:'power3.out'});}
 $('month').value=monthNow();
 $('month').addEventListener('change',()=>{clearForm();render()});
+if(!$('recordForm')&&$('addBtn')) $('addBtn').addEventListener('click',()=>{window.location.href='./rekap.html'});
 if($('recordForm')) {
 $('addBtn').addEventListener('click',()=>{clearForm();$('editor').scrollIntoView({behavior:'smooth',block:'start'});$('store').focus()});
 $('cancelBtn').addEventListener('click',clearForm);
