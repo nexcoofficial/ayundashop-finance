@@ -16,3 +16,44 @@ button:active{transform:scale(.98)}
 
 /* Finance report dashboard */
 .report-intro{padding:8px 2px 18px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.14em;color:#82a9bd}.report-intro h2{font-size:clamp(24px,3vw,34px);line-height:1.15;letter-spacing:-.04em;margin:8px 0 9px;max-width:760px}.report-intro p{color:var(--muted);max-width:760px;margin:0;font-size:14px}.report-stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:17px}.report-stats .stat{background:var(--panel);border-color:var(--line);box-shadow:none}.report-stats .stat:nth-child(1):before{background:#8ab8ff}.report-stats .stat:nth-child(2):before{background:#8b9eea}.report-stats .stat:nth-child(3):before{background:#58d6b0}.report-stats .stat:nth-child(4):before{background:#e0b66a}.report-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:16px}.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}.section-head h2{margin:0 0 4px}.report-lines{display:grid;gap:0}.report-line{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--line)}.report-line:last-child{border-bottom:0}.report-line span{color:var(--muted)}.report-line strong{font-variant-numeric:tabular-nums;text-align:right}.split-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.split-card{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}.split-card span{font-size:12px;color:var(--muted)}.split-card strong{font-size:25px;letter-spacing:-.04em}.split-card small{font-size:11px;color:var(--muted)}.report-note{font-size:12px;color:var(--muted);line-height:1.6;margin:14px 0 0}.report-table{min-width:1050px}.report-table td:first-child,.report-table th:first-child{text-align:left}.formula-details summary{cursor:pointer;font-weight:750}.formula-grid{margin-top:18px}.formula-grid>div{border-bottom:1px solid var(--line);padding-bottom:10px}.formula-grid>div div{color:var(--muted);font-size:13px}@media(max-width:1000px){.report-grid{grid-template-columns:1fr}.report-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.report-stats{grid-template-columns:1fr 1fr}.report-stats .stat{padding:12px}.report-stats .stat .v{font-size:16px}.split-cards{grid-template-columns:1fr}.split-card{display:grid;grid-template-columns:1fr auto;align-items:center}.split-card small{grid-column:1/-1}.report-intro h2{font-size:26px}}
+
+
+/* Halden-inspired finance UI: light canvas, crisp cards, teal focus */
+:root{color-scheme:light;--bg:#f3f5f4;--panel:#ffffff;--panel2:#f7f9f8;--line:#dfe6e4;--text:#152322;--muted:#667572;--green:#087f70;--red:#c3424e;--blue:#187f88;--amber:#a66a0a}
+body{background:#f3f5f4;color:var(--text)}
+.wrap{max-width:1680px;padding:24px}
+.top{padding:4px 0 18px;border-bottom:1px solid #e1e7e5;margin-bottom:18px}
+.logo{background:linear-gradient(135deg,#e0f2ef,#bce4de);color:#0b6159;box-shadow:none;border:1px solid #b8dcd6}
+.sub,.mini,.muted,.foot{color:#6a7976}
+.panel{background:#fff;border:1px solid #e0e7e5;border-radius:18px;box-shadow:0 2px 5px rgba(18,45,40,.025);padding:20px}
+.stat{background:#fff;border:1px solid #e0e7e5;border-radius:16px;box-shadow:0 2px 5px rgba(18,45,40,.025)}
+.stat:before{background:#0f8279}
+.stat .k{color:#6a7976}
+.stat .v{color:#152322}
+button{background:#fff;border-color:#d8e1df;color:#20302e;border-radius:11px}
+button.primary{background:#117d79;border-color:#117d79;color:#fff}
+button.danger{background:#fff1f1;color:#a52e3b;border-color:#f0caca}
+input,select{background:#fff;border-color:#d7e1de;color:#1d2c2a}
+input:focus,select:focus{border-color:#17877e;box-shadow:0 0 0 3px rgba(23,135,126,.1)}
+.note{border-color:#c7e6df;background:#eaf7f4;color:#285e56}
+.tablewrap{border-color:#e0e7e5}
+table{background:#fff}
+tbody tr:hover{background:#f2f8f6}
+th{background:#f0f5f3;color:#52635f}
+th,td{border-bottom-color:#e8eeec}
+.chartbox{border-bottom-color:#e0e7e5}
+.chartbar{background:linear-gradient(180deg,#78cfc5,#147f79)}
+.chartvalue{color:#53635f}
+.statusrow{background:#f8faf9;border-color:#e2e9e7}
+.navtabs{margin:0 0 20px;justify-content:flex-start;width:max-content;background:#fff;border:1px solid #e0e7e5;border-radius:14px;box-shadow:0 2px 5px rgba(18,45,40,.025);backdrop-filter:none;position:static}
+.navtab{color:#62716e}
+.navtab:hover{color:#1a302c;background:#f3f7f6}
+.navtab.active{background:#e3f3f0;border-color:#c8e6e0;color:#126b63;box-shadow:none}
+.tag{border-color:#dce5e2;color:#61716d}
+.tag.good{color:#087f70;border-color:#b9e1d6}
+.tag.bad{color:#b33d49;border-color:#efc4c8}
+.stat:hover{transform:translateY(-2px);border-color:#b9d9d3}
+.report-intro .eyebrow{color:#147d74}
+.report-intro p{color:#647470}
+.split-card,.cashflow-row,.formula-grid>div{background:#f7faf9;border-color:#e1e9e6}
+@media(max-width:600px){.wrap{padding:14px}.panel{padding:14px}.navtabs{width:100%;position:static}.navtab{padding:10px 11px}}
