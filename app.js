@@ -68,6 +68,7 @@ function render(){
   if($('reportRows')) $('reportRows').innerHTML=all.length?all.map(({r,c})=>'<tr><td class="store">'+esc(r.store)+'<span class="split">'+esc(r.advertiser||'Pengiklan belum diisi')+'</span></td><td>'+money(c.totalIncome)+'</td><td>'+money(c.adCost+c.groupCost+c.rtsDeficit)+'</td><td>'+money(c.carriedLoss)+'</td><td class="'+(c.finalProfit>=0?'pos':'neg')+'">'+money(c.finalProfit)+'</td><td>'+money(c.management)+'</td><td>'+money(c.cs)+'</td><td>'+money(c.owner)+'</td></tr>').join(''):'<tr><td colspan="8" class="empty">Belum ada data untuk periode ini.</td></tr>';
   if($('reportProfitNote')) $('reportProfitNote').textContent='Bagian Management, CS, dan Owner hanya dihitung dari profit positif per toko setelah biaya RTS yang tidak tertutup saver dan minus lama. Toko yang rugi tidak menghasilkan pembagian profit.';
  }
+ if($('savedRecordSelect')) { const select=$('savedRecordSelect'); const selected=select.value; select.innerHTML=all.length?'<option value="">Pilih toko untuk diedit</option>'+all.map(({r})=>'<option value="'+esc(r.id)+'">'+esc(r.store)+' · '+esc(monthLabel(r.month))+'</option>').join(''):'<option value="">Belum ada rekap tersimpan</option>'; if(selected&&all.some(({r})=>r.id===selected))select.value=selected; }
  if($('rows')) {
  const query=$('search').value.trim().toLowerCase(), filter=$('profitFilter').value;
  const visible=all.filter(x=>(!query||(x.r.store+' '+x.r.advertiser).toLowerCase().includes(query))&&(filter==='all'||(filter==='profit'?x.c.finalProfit>0:x.c.finalProfit<=0)));
@@ -87,6 +88,7 @@ $('month').value=monthNow();
 $('month').addEventListener('change',()=>{clearForm();render()});
 if(!$('recordForm')&&$('addBtn')) $('addBtn').addEventListener('click',()=>{window.location.href='./rekap.html'});
 if($('recordForm')) {
+if($('editSelectedRecord')) $('editSelectedRecord').addEventListener('click',()=>{const selected=$('savedRecordSelect').value;const r=data.records.find(x=>x.id===selected);if(!r){alert('Pilih rekap toko yang ingin diedit.');return}editRecord(r)});
 $('addBtn').addEventListener('click',()=>{clearForm();$('editor').scrollIntoView({behavior:'smooth',block:'start'});$('store').focus()});
 $('cancelBtn').addEventListener('click',clearForm);
 $('store').addEventListener('input',updateCarryInfo);
