@@ -1,6 +1,534 @@
-<!doctype html>
-<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101827"><title>Overview | AyundaShop Finance</title><link rel="stylesheet" href="./styles.css?v=20261026c"></head><body><main class="wrap"><header class="top"><div class="brand"><div class="logo">AF</div><div><h1 style="font-size:22px;margin:0">AyundaShop Finance</h1><div class="sub">Finance overview · Rekap COD · Saver & RTS · Tutup Buku</div></div></div>
-<div class="actions"><button id="exportBtn">Export CSV</button><button id="backupBtn">Backup JSON</button><button id="restoreBtn">Restore JSON</button><input id="restoreFile" type="file" accept="application/json,.json" class="hidden"></div></header>
-<div class="note"><b>Data tersimpan di browser ini.</b> Tidak ada login/server database. Gunakan Backup JSON secara berkala dan pindahkan backup bila ganti perangkat/browser. Rumus aplikasi mengikuti aturan rekap yang dijelaskan, dengan koreksi agar kekurangan RTS yang sudah dibayar dari profit tidak terbawa sebagai saldo saver negatif.</div>
-<section class="panel"><div class="bar"><div class="month"><label for="month">Periode tutup buku</label><input type="month" id="month"></div><div style="flex:1;min-width:190px"><div class="sub">Bulan yang dipilih</div><div id="periodTitle" style="font-size:19px;font-weight:800">-</div></div><button class="primary" id="addBtn">+ Tambah / Update Toko</button></div></section>
-<nav class="navtabs" aria-label="Navigasi utama"><a class="navtab active" href="./index.html" aria-current="page">Overview</a><a class="navtab " href="./rekap.html" >Rekap bulanan</a><a class="navtab " href="./laporan.html" >Laporan & rumus</a></nav><section class="page"><section class="grid" id="stats"></section><section class="dashgrid"><div class="panel"><div class="bar" style="justify-content:space-between;align-items:start"><div><h2 style="margin:0">Tren profit bulanan</h2><div class="mini">Perbandingan profit akhir dari rekap yang sudah disimpan</div></div><span class="tag">6 bulan terakhir</span></div><div id="profitChart" class="chartbox"><div class="empty">Data akan muncul setelah rekap disimpan.</div></div></div><div class="panel"><h2>Status tutup buku</h2><div class="mini" style="margin-top:-8px;margin-bottom:12px">Ringkasan hasil rekap periode terpilih</div><div id="closeStatus" class="statuslist"></div></div></section></section><div class="foot">AyundaShop Finance · Data tersimpan lokal di browser ini. Lakukan backup secara berkala.</div></main><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="./app.js" defer></script></body></html>
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AyundaShop Finance - Rekonsiliasi &amp; Inteligensi Finansial</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "canvas-bg": "#FAF7F2",
+            "canvas-subtle": "#F4EFEA",
+            "surface-card": "#FFFFFF",
+            "surface-card-subtle": "#FCFAF7",
+            "border-subtle": "#EADBCE",
+            "border-light": "#EDE6DE",
+            "ink-primary": "#1B1714",
+            "ink-secondary": "#635B54",
+            "ink-tertiary": "#948A80",
+            "burnt-orange": "#E9512B",
+            "burnt-orange-dark": "#C73E1D",
+            "burnt-orange-subtle": "#FDF0EC",
+            "accent-teal": "#0F8B7B",
+            "accent-teal-subtle": "#E8F6F4",
+            "accent-purple": "#553A85",
+            "accent-purple-subtle": "#F3EFF9",
+            "status-negative": "#D63920",
+            "status-negative-subtle": "#FDF1EF",
+            "hero-dark": "#231815"
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #FAF7F2;
+        color: #1B1714;
+        font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      }
+    }
+    .num-tabular {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body class="bg-canvas-bg text-ink-primary min-h-screen flex flex-col antialiased selection:bg-burnt-orange selection:text-white">
+<!-- TOP APP NAVIGATION HEADER -->
+<header class="sticky top-0 z-50 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-border-light">
+<div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+<!-- Brand & Navigation links -->
+<div class="flex items-center gap-6 lg:gap-8">
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="w-8 h-8 rounded-lg bg-burnt-orange text-white flex items-center justify-center font-bold text-sm tracking-wider shadow-sm group-hover:bg-burnt-orange-dark transition-colors">
+            AF
+          </div>
+<div class="flex flex-col">
+<span class="font-bold text-[15px] tracking-tight text-ink-primary leading-tight flex items-center gap-1.5">
+              AyundaShop <span class="text-burnt-orange font-semibold">Finance</span>
+</span>
+</div>
+</a>
+<div class="h-4 w-px bg-border-subtle hidden md:block"></div>
+<nav class="hidden md:flex items-center gap-1 bg-canvas-subtle/80 p-1 rounded-lg border border-border-light text-xs font-semibold">
+<a class="px-3 py-1.5 rounded-md bg-white text-ink-primary shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all" href="#">Overview</a>
+<a class="px-3 py-1.5 rounded-md text-ink-secondary hover:text-ink-primary transition-colors" href="#">Rekap Bulanan</a>
+<a class="px-3 py-1.5 rounded-md text-ink-secondary hover:text-ink-primary transition-colors" href="#">Laporan Keuangan</a>
+</nav>
+</div>
+<!-- Action items & Periode Switcher -->
+<div class="flex items-center gap-2.5">
+<!-- Month Selector Badge -->
+<div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white border border-border-light rounded-lg text-xs font-semibold shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+<span class="text-ink-tertiary uppercase text-[10px] tracking-wider">Periode:</span>
+<span class="text-ink-primary font-bold">Oktober 2024</span>
+<span class="material-symbols-outlined text-[16px] text-ink-tertiary">keyboard_arrow_down</span>
+</div>
+<!-- Quick Data Utilities (Desktop) -->
+<div class="hidden xl:flex items-center gap-1">
+<button class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-border-light text-ink-secondary hover:text-ink-primary text-xs font-medium transition-colors" title="Ekspor Data CSV" type="button">
+<span class="material-symbols-outlined text-[15px]">download</span>
+<span>Ekspor CSV</span>
+</button>
+<button class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-border-light text-ink-secondary hover:text-ink-primary text-xs font-medium transition-colors" title="Cadangkan Data JSON" type="button">
+<span class="material-symbols-outlined text-[15px]">cloud_upload</span>
+<span>Backup</span>
+</button>
+<button class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-border-light text-ink-secondary hover:text-ink-primary text-xs font-medium transition-colors" title="Pulihkan Data JSON" type="button">
+<span class="material-symbols-outlined text-[15px]">cloud_download</span>
+<span>Restore</span>
+</button>
+</div>
+<!-- Primary Action CTA -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-burnt-orange hover:bg-burnt-orange-dark text-white font-semibold text-xs transition-colors shadow-sm whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>+ Tambah / Update Toko</span>
+</button>
+<!-- User Profile Avatar -->
+<div class="w-8 h-8 rounded-lg bg-[#231815] text-white flex items-center justify-center font-bold text-xs shadow-sm">
+          AS
+        </div>
+</div>
+</div>
+</header>
+<!-- MAIN DASHBOARD CONTENT -->
+<main class="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-7 space-y-6">
+<!-- 1. TOP SECTION - WELCOME & PERIOD SELECTOR BANNER -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-1">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-accent-teal-subtle text-accent-teal text-[11px] font-bold tracking-wide uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-teal animate-pulse"></span>
+            Tutup Buku Terverifikasi
+          </span>
+<span class="text-xs text-ink-tertiary font-medium">• 8 Toko Aktif Beroperasi</span>
+</div>
+<h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-ink-primary">
+          Selamat Pagi, Owner AyundaShop
+        </h1>
+<p class="text-sm text-ink-secondary mt-0.5 font-normal">
+          Konsolidasi 8 toko aktif telah tuntas direkap &amp; siap alokasi profit.
+        </p>
+</div>
+<!-- Quick Period Pill Switcher -->
+<div class="flex items-center bg-white p-1 rounded-xl border border-border-subtle shadow-sm self-start md:self-auto">
+<button class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-ink-secondary hover:text-ink-primary transition-colors" type="button">
+          Agustus
+        </button>
+<button class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-ink-secondary hover:text-ink-primary transition-colors" type="button">
+          September
+        </button>
+<button class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-[#1B1714] text-white shadow-sm transition-all" type="button">
+          Oktober 2024
+        </button>
+</div>
+</div>
+<!-- 2. PRIMARY HERO BENTO SECTION -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+<!-- Dominant Hero Card (Burnt Orange & Deep Plum Palette) - 7 Cols -->
+<div class="lg:col-span-7 bg-[#201815] text-white rounded-2xl p-6 sm:p-7 border border-[#382b26] shadow-[0_4px_24px_rgba(32,24,21,0.12)] relative overflow-hidden flex flex-col justify-between">
+<!-- Radial aesthetic tint decoration -->
+<div class="absolute -right-16 -top-16 w-72 h-72 rounded-full bg-burnt-orange/20 blur-3xl pointer-events-none"></div>
+<div class="absolute right-40 -bottom-16 w-52 h-52 rounded-full bg-[#553A85]/30 blur-2xl pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex items-center justify-between gap-3 mb-4">
+<span class="inline-flex items-center gap-2 text-[11px] font-bold tracking-widest text-[#E6A99A] uppercase">
+<span class="w-2 h-2 rounded-full bg-burnt-orange"></span>
+              Total Profit Bersih Konsolidasi (Oktober 2024)
+            </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent-teal/20 text-[#3CD1BF] text-xs font-semibold border border-accent-teal/30">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+              100% Cocok Rekon
+            </span>
+</div>
+<div class="flex flex-wrap items-baseline gap-3 my-1">
+<span class="text-3xl sm:text-4xl lg:text-[42px] font-extrabold tracking-tight num-tabular text-white">
+              Rp 148.850.000
+            </span>
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 text-[#40DFCC] font-semibold text-xs border border-white/10 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[15px]">trending_up</span>
+              23.8% Net Margin
+            </div>
+</div>
+<p class="text-xs sm:text-[13px] text-[#C4B6AD] mt-2 max-w-xl font-normal leading-relaxed">
+            Profit riil bersih terkonsolidasi setelah dikurangi seluruh beban operasional iklan Meta Ads, HPP, logistik ekspedisi, serta cadangan buffer penyerapan retur RTS.
+          </p>
+</div>
+<!-- Proportional Split Summary Pill & Micro-bars -->
+<div class="mt-7 pt-5 border-t border-white/10 relative z-10">
+<div class="flex items-center justify-between text-xs mb-2.5">
+<span class="text-[#E6DCD5] font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-burnt-orange">pie_chart</span>
+              Skema Alokasi Profit Disepakati (50% : 30% : 20%)
+            </span>
+<span class="text-[11px] text-[#A6978C] font-mono">Total 100% Tereksekusi</span>
+</div>
+<!-- Micro-bars Progress Stack -->
+<div class="h-2 w-full bg-white/10 rounded-full overflow-hidden flex gap-1 p-0.5">
+<div class="h-full bg-burnt-orange rounded-full" style="width: 50%" title="Manajemen 50%"></div>
+<div class="h-full bg-[#3CD1BF] rounded-full" style="width: 30%" title="Owner 30%"></div>
+<div class="h-full bg-[#9E7AD2] rounded-full" style="width: 20%" title="CS &amp; Fulfillment 20%"></div>
+</div>
+<!-- Distribution Pill Breakdown -->
+<div class="grid grid-cols-3 gap-2.5 mt-3.5">
+<div class="p-3 rounded-xl bg-white/[0.06] border border-white/5 backdrop-blur-xs">
+<div class="flex items-center gap-1.5 text-[11px] font-medium text-[#C8B8AE]">
+<span class="w-2 h-2 rounded-full bg-burnt-orange"></span>
+                Manajemen (50%)
+              </div>
+<div class="text-sm sm:text-base font-bold text-white num-tabular mt-1">Rp 74.4M</div>
+<div class="text-[10px] text-[#9A8A80] mt-0.5">Ops &amp; Scale Ekosistem</div>
+</div>
+<div class="p-3 rounded-xl bg-white/[0.06] border border-white/5 backdrop-blur-xs">
+<div class="flex items-center gap-1.5 text-[11px] font-medium text-[#C8B8AE]">
+<span class="w-2 h-2 rounded-full bg-[#3CD1BF]"></span>
+                Owner (30%)
+              </div>
+<div class="text-sm sm:text-base font-bold text-white num-tabular mt-1">Rp 44.7M</div>
+<div class="text-[10px] text-[#9A8A80] mt-0.5">Dividen Kas Bersih</div>
+</div>
+<div class="p-3 rounded-xl bg-white/[0.06] border border-white/5 backdrop-blur-xs">
+<div class="flex items-center gap-1.5 text-[11px] font-medium text-[#C8B8AE]">
+<span class="w-2 h-2 rounded-full bg-[#9E7AD2]"></span>
+                CS &amp; Fulfil (20%)
+              </div>
+<div class="text-sm sm:text-base font-bold text-white num-tabular mt-1">Rp 29.8M</div>
+<div class="text-[10px] text-[#9A8A80] mt-0.5">Bonus Insentif Kinerja</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Companion Top Metric Cards Stack (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col justify-between gap-4">
+<!-- Card A: Total Omzet COD Bruto -->
+<div class="bg-white rounded-2xl p-5 border border-border-light shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between hover:border-border-subtle transition-all">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-wider text-ink-tertiary">Total Omzet COD Bruto</span>
+<span class="px-2 py-0.5 rounded-md bg-canvas-subtle text-ink-secondary text-[11px] font-semibold border border-border-light">
+              8 Toko Aktif
+            </span>
+</div>
+<div class="my-2.5">
+<div class="text-2xl sm:text-[26px] font-extrabold text-ink-primary num-tabular tracking-tight">
+              Rp 624.500.000
+            </div>
+<p class="text-xs text-ink-secondary mt-0.5">Gross GMV dari 4 siklus pencairan mingguan ekspedisi</p>
+</div>
+<div class="pt-2.5 border-t border-border-light flex items-center justify-between text-xs">
+<span class="text-ink-tertiary">Rata-rata per toko:</span>
+<span class="font-bold text-ink-primary num-tabular">Rp 78.062.500</span>
+</div>
+</div>
+<!-- Card B: Total Inflow / COD Masuk -->
+<div class="bg-white rounded-2xl p-5 border border-border-light shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between hover:border-border-subtle transition-all">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-wider text-ink-tertiary">Total Inflow / COD Masuk</span>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-accent-teal">
+<span class="material-symbols-outlined text-[14px]">account_balance</span>
+              Masuk Rekening
+            </span>
+</div>
+<div class="my-2.5">
+<div class="text-2xl sm:text-[26px] font-extrabold text-ink-primary num-tabular tracking-tight">
+              Rp 461.650.000
+            </div>
+<p class="text-xs text-ink-secondary mt-0.5">Setelah pemotongan Saver &amp; mutasi cash operasional</p>
+</div>
+<div class="pt-2.5 border-t border-border-light flex items-center justify-between text-xs">
+<span class="text-ink-tertiary">Efektivitas pencairan:</span>
+<span class="font-bold text-accent-teal num-tabular">73.9% dari Omzet Bruto</span>
+</div>
+</div>
+<!-- Card C: Total Pengeluaran & RTS -->
+<div class="bg-white rounded-2xl p-5 border border-border-light shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between hover:border-border-subtle transition-all">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-wider text-ink-tertiary">Total Pengeluaran &amp; RTS</span>
+<span class="px-2 py-0.5 rounded-md bg-status-negative-subtle text-status-negative text-[11px] font-semibold">
+              Kompilasi Beban
+            </span>
+</div>
+<div class="my-2.5">
+<div class="text-2xl sm:text-[26px] font-extrabold text-ink-primary num-tabular tracking-tight">
+              Rp 274.300.000
+            </div>
+<p class="text-xs text-ink-secondary mt-0.5">Meta Ads Rp 245.8M + RTS Defisit Rp 3.5M</p>
+</div>
+<div class="pt-2.5 border-t border-border-light flex items-center justify-between text-xs">
+<span class="text-ink-tertiary">HPP &amp; Logistik Tercover:</span>
+<span class="font-bold text-ink-primary num-tabular">Rp 25.000.000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. SECONDARY BENTO GRID - FINANCIAL MECHANICS & HEALTH -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+<!-- Card 1: Alokasi Saver COD (Risk Reserve) - 4 Cols -->
+<div class="lg:col-span-4 bg-white rounded-2xl p-6 border border-border-light shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-accent-purple-subtle text-accent-purple flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">shield</span>
+</div>
+<div>
+<h3 class="font-bold text-sm text-ink-primary">Alokasi Saver COD</h3>
+<span class="text-[11px] text-ink-tertiary font-medium">Risk Reserve Buffer</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-accent-teal-subtle text-accent-teal">
+              83.7% Aman
+            </span>
+</div>
+<div class="mt-4 pb-4 border-b border-border-light">
+<span class="text-xs text-ink-secondary block">Total Dialokasikan Bulan Ini:</span>
+<div class="text-2xl sm:text-3xl font-extrabold text-accent-purple num-tabular mt-0.5">
+              Rp 187.350.000
+            </div>
+<p class="text-xs text-ink-secondary mt-1">
+              Disisihkan otomatis dari COD mingguan untuk menjamin likuiditas retur ekspedisi.
+            </p>
+</div>
+<div class="space-y-3.5 my-4">
+<div class="flex items-center justify-between text-xs">
+<span class="text-ink-secondary flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-purple"></span>
+                Pool Cadangan Tersedia:
+              </span>
+<span class="font-bold text-ink-primary num-tabular">Rp 64.200.000</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-ink-secondary flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-teal"></span>
+                Tertutup Saver Bulanan:
+              </span>
+<span class="font-bold text-accent-teal num-tabular">Rp 18.000.000</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-ink-secondary flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-status-negative"></span>
+                Defisit RTS Dibayar Profit:
+              </span>
+<span class="font-bold text-status-negative num-tabular">Rp 3.500.000</span>
+</div>
+</div>
+</div>
+<!-- Coverage Banner Pill -->
+<div class="p-3 bg-canvas-subtle rounded-xl border border-border-light text-xs text-ink-secondary flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[16px] text-accent-teal shrink-0 mt-0.5">verified_user</span>
+<div>
+<span class="font-bold text-ink-primary">Mitigasi RTS Coverage: 83.7%</span>
+<p class="text-[11px] text-ink-tertiary mt-0.5 leading-snug">
+              Cadangan saver likuid cukup menampung risiko fluktuasi retur hingga 3 siklus ke depan.
+            </p>
+</div>
+</div>
+</div>
+<!-- Card 2: Tren Profit Bulanan (6 Bulan Terakhir) - 5 Cols -->
+<div class="lg:col-span-5 bg-white rounded-2xl p-6 border border-border-light shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div>
+<h3 class="font-bold text-sm text-ink-primary">Tren Profit Bulanan</h3>
+<p class="text-[11px] text-ink-tertiary">Historis performa konsolidasi (Mei – Oktober 2024)</p>
+</div>
+<div class="flex items-center gap-1.5 text-[11px] font-semibold text-burnt-orange bg-burnt-orange-subtle px-2.5 py-1 rounded-full border border-burnt-orange/10">
+<span class="w-2 h-2 rounded-full bg-burnt-orange"></span>
+              Puncak Rekor
+            </div>
+</div>
+<!-- Vertical Bar Chart Visualization -->
+<div class="mt-6 mb-2">
+<!-- Histogram Area -->
+<div class="h-44 w-full flex items-end justify-between gap-2 sm:gap-3 px-1 border-b border-border-light pb-2 relative">
+<!-- Grid Guideline Lines -->
+<div class="absolute inset-x-0 top-3 h-px border-b border-dashed border-border-light pointer-events-none"></div>
+<div class="absolute inset-x-0 top-1/2 h-px border-b border-dashed border-border-light pointer-events-none"></div>
+<!-- Bar 1: Mei (Rp 98.4M) -> ~55% height -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<span class="text-[10px] font-mono font-medium text-ink-tertiary group-hover:text-ink-primary transition-colors">98.4M</span>
+<div class="w-full bg-[#E8DDD2] group-hover:bg-[#DAC8B8] rounded-t-md transition-all duration-200" style="height: 52%"></div>
+<span class="text-[11px] font-medium text-ink-tertiary">Mei</span>
+</div>
+<!-- Bar 2: Jun (Rp 112M) -> ~65% height -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<span class="text-[10px] font-mono font-medium text-ink-tertiary group-hover:text-ink-primary transition-colors">112M</span>
+<div class="w-full bg-[#E8DDD2] group-hover:bg-[#DAC8B8] rounded-t-md transition-all duration-200" style="height: 62%"></div>
+<span class="text-[11px] font-medium text-ink-tertiary">Jun</span>
+</div>
+<!-- Bar 3: Jul (Rp 126.5M) -> ~72% height -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<span class="text-[10px] font-mono font-medium text-ink-tertiary group-hover:text-ink-primary transition-colors">126.5M</span>
+<div class="w-full bg-[#DFD3C6] group-hover:bg-[#DAC8B8] rounded-t-md transition-all duration-200" style="height: 72%"></div>
+<span class="text-[11px] font-medium text-ink-tertiary">Jul</span>
+</div>
+<!-- Bar 4: Ags (Rp 138.2M) -> ~80% height -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<span class="text-[10px] font-mono font-medium text-ink-tertiary group-hover:text-ink-primary transition-colors">138.2M</span>
+<div class="w-full bg-[#D6C5B5] group-hover:bg-burnt-orange/50 rounded-t-md transition-all duration-200" style="height: 80%"></div>
+<span class="text-[11px] font-medium text-ink-tertiary">Ags</span>
+</div>
+<!-- Bar 5: Sep (Rp 142M) -> ~85% height -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer">
+<span class="text-[10px] font-mono font-medium text-ink-tertiary group-hover:text-ink-primary transition-colors">142M</span>
+<div class="w-full bg-[#D6C5B5] group-hover:bg-burnt-orange/70 rounded-t-md transition-all duration-200" style="height: 85%"></div>
+<span class="text-[11px] font-medium text-ink-tertiary">Sep</span>
+</div>
+<!-- Bar 6: Okt (Rp 148.85M - Active Rekor) -> ~96% height -->
+<div class="flex-1 flex flex-col items-center gap-1.5 group cursor-pointer relative">
+<!-- Floating Indicator Tooltip -->
+<div class="absolute -top-7 px-1.5 py-0.5 rounded bg-[#1B1714] text-white text-[9px] font-mono font-bold whitespace-nowrap shadow-sm">
+                  Rekor Baru
+                </div>
+<span class="text-[10px] font-mono font-bold text-burnt-orange">148.85M</span>
+<div class="w-full bg-burnt-orange rounded-t-md transition-all duration-200 shadow-[0_2px_8px_rgba(233,81,43,0.3)]" style="height: 96%"></div>
+<span class="text-[11px] font-bold text-burnt-orange">Okt</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Metric Footer Strip -->
+<div class="grid grid-cols-2 gap-3 pt-3">
+<div class="p-2.5 rounded-lg bg-canvas-subtle border border-border-light">
+<span class="text-[10px] uppercase font-bold text-ink-tertiary block">Kenaikan MoM:</span>
+<span class="text-xs font-bold text-accent-teal flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[13px]">trending_up</span>
+              +4.82% (vs Sep Rp 142M)
+            </span>
+</div>
+<div class="p-2.5 rounded-lg bg-canvas-subtle border border-border-light">
+<span class="text-[10px] uppercase font-bold text-ink-tertiary block">Pertumbuhan 6 Bln:</span>
+<span class="text-xs font-bold text-ink-primary num-tabular mt-0.5">
+              +51.27% (sejak Mei)
+            </span>
+</div>
+</div>
+</div>
+<!-- Card 3: Status Tutup Buku & Audit Toko - 3 Cols -->
+<div class="lg:col-span-3 bg-white rounded-2xl p-6 border border-border-light shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-accent-teal-subtle text-accent-teal flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<h3 class="font-bold text-sm text-ink-primary leading-tight">Status Tutup Buku &amp; Audit</h3>
+</div>
+</div>
+<div class="space-y-3">
+<!-- 7 Toko Profit -->
+<div class="p-3 rounded-xl bg-canvas-subtle border border-border-light flex items-center justify-between">
+<div>
+<span class="text-xs font-bold text-ink-primary block">Toko Profit Positif</span>
+<span class="text-[10px] text-ink-tertiary">Melampaui target margin</span>
+</div>
+<span class="text-xs font-bold text-accent-teal px-2 py-0.5 rounded-md bg-accent-teal-subtle">
+                7 / 8 (87.5%)
+              </span>
+</div>
+<!-- 1 Toko Defisit -->
+<div class="p-3 rounded-xl bg-canvas-subtle border border-border-light">
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-bold text-ink-primary">Toko Defisit / Minus</span>
+<span class="text-xs font-bold text-status-negative px-2 py-0.5 rounded-md bg-status-negative-subtle">
+                  1 Toko
+                </span>
+</div>
+<p class="text-[11px] text-ink-secondary leading-snug">
+                Toko Hijab Daily <span class="font-bold text-status-negative font-mono">(-Rp 2.4Jt)</span> tertutup carry-forward.
+              </p>
+</div>
+<!-- 0 Toko Impas -->
+<div class="p-3 rounded-xl bg-canvas-subtle border border-border-light flex items-center justify-between">
+<div>
+<span class="text-xs font-bold text-ink-primary block">Toko Impas / Nol</span>
+<span class="text-[10px] text-ink-tertiary">Seluruh toko memiliki mutasi</span>
+</div>
+<span class="text-xs font-bold text-ink-secondary px-2 py-0.5 rounded-md bg-white border border-border-light">
+                0 Toko
+              </span>
+</div>
+</div>
+</div>
+<!-- Integritas Rekon Status -->
+<div class="mt-4 pt-3.5 border-t border-border-light flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-accent-teal"></span>
+<span class="text-xs font-bold text-ink-primary">Integritas Rekon:</span>
+</div>
+<span class="text-xs font-bold text-accent-teal">
+            100% Selesai &amp; Terverifikasi
+          </span>
+</div>
+</div>
+</div>
+<!-- 4. QUICK ACTION & AUDIT RECENT LOG BAR -->
+<div class="bg-white rounded-2xl p-4 sm:p-5 border border-border-light shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3 w-full md:w-auto">
+<div class="w-9 h-9 rounded-xl bg-burnt-orange-subtle text-burnt-orange flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">sync</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-ink-primary">Log Rekonsiliasi Otomatis Terakhir:</span>
+<span class="text-[11px] font-mono text-ink-tertiary">31 Okt 2024, 23:59 WIB</span>
+</div>
+<p class="text-xs text-ink-secondary">
+            Seluruh data mutasi bank, COD ekspedisi, dan laporan ads telah diselaraskan dengan aman.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-2.5 w-full md:w-auto justify-end">
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-border-light bg-canvas-subtle hover:bg-white text-xs font-semibold text-ink-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">print</span>
+          Cetak Laporan
+        </button>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#1B1714] hover:bg-black text-white text-xs font-semibold transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">send</span>
+          Kirim Rekap ke Owner
+        </button>
+</div>
+</div>
+</main>
+<!-- APP FOOTER -->
+<footer class="mt-8 border-t border-border-light bg-canvas-subtle/50 py-5">
+<div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-tertiary">
+<div class="flex items-center gap-2">
+<span class="font-bold text-ink-secondary">AyundaShop Finance</span>
+<span>•</span>
+<span>Platform Inteligensi &amp; Rekonsiliasi Finansial Multi-Store</span>
+</div>
+<div class="flex items-center gap-4">
+<span>© 2024 PT Ayunda Retail Teknologi</span>
+<span class="inline-flex items-center gap-1 text-accent-teal font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-teal"></span>
+          Sistem Operasional Stabil
+        </span>
+</div>
+</div>
+</footer>
+</body></html>
