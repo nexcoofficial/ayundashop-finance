@@ -57,5 +57,5 @@ function wireEveryTap(){
  });
  const appMonth=document.getElementById('appMonth');if(appMonth&&!appMonth.value)appMonth.value=now();
 }
-document.readyState==='loading'?document.addEventListener('DOMContentLoaded',boot);wireEveryTap():{boot();wireEveryTap()};
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>{boot();wireEveryTap()})}else{boot();wireEveryTap()}
 })();
