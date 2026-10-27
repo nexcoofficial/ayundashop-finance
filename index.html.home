@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+
+<html lang="id" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-primary-container":"#fffbff","accent-teal-subtle":"#EBF7F5","on-tertiary":"#ffffff","kpi-burnt-orange":"#E9512B","surface-variant":"#eadfed","surface-dim":"#e2d6e5","primary":"#af2802","error-container":"#ffdad6","primary-fixed-dim":"#ffb4a2","status-neutral":"#6B7280","secondary-container":"#83f3df","inverse-primary":"#ffb4a2","on-tertiary-container":"#fffbff","surface-container-low":"#fcf0fe","kpi-burnt-orange-subtle":"#FDF0EC","on-surface-variant":"#5a413a","canvas-bg":"#F5EDE5","on-tertiary-fixed":"#270058","outline":"#8e7069","primary-fixed":"#ffdad2","accent-purple-subtle":"#F2EDF9","surface-container-highest":"#eadfed","surface-container":"#f6eaf9","background":"#fff7fd","on-primary-fixed":"#3c0700","surface-bright":"#fff7fd","on-primary":"#ffffff","secondary-fixed":"#86f6e2","canvas-subtle":"#FAF4EE","on-secondary-fixed":"#00201b","on-error":"#ffffff","on-secondary":"#ffffff","on-background":"#1f1923","on-tertiary-fixed-variant":"#553589","surface-card-elevated":"#FFFFFF","on-surface":"#1f1923","outline-variant":"#e3bfb6","error":"#ba1a1a","secondary":"#006b5e","border-strong":"#D8C4B4","on-primary-fixed-variant":"#8a1d00","primary-container":"#d2411c","border-hairline":"#EADCD0","surface-container-lowest":"#ffffff","inverse-on-surface":"#f9edfb","tertiary-container":"#8464bb","ink-secondary":"#635868","tertiary":"#6b4ba0","on-secondary-container":"#006f62","secondary-fixed-dim":"#68d9c6","surface-container-high":"#f0e4f3","surface":"#fff7fd","status-positive":"#128274","ink-primary":"#211B25","tertiary-fixed-dim":"#d5bbff","surface-card":"#FFFAF6","on-error-container":"#93000a","accent-teal":"#159B8A","on-secondary-fixed-variant":"#005047","inverse-surface":"#352e39","status-negative":"#D9381E","status-warning":"#D97706","ink-tertiary":"#8F8495","accent-purple":"#5C3C91","tertiary-fixed":"#ecdcff","surface-tint":"#b32b04"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","margin":"1.75rem","space-lg":"1.25rem","space-2xl":"2.5rem","space-xl":"1.75rem","space-md":"0.875rem"},"fontFamily":{"display-hero":["Plus Jakarta Sans"],"body-sm":["Inter"],"num-table":["Inter"],"headline-kpi-mobile":["Plus Jakarta Sans"],"headline-kpi":["Plus Jakarta Sans"],"label-caps":["Inter"],"title-md":["Plus Jakarta Sans"],"headline-card":["Plus Jakarta Sans"],"label-badge":["Inter"],"body-medium":["Inter"],"body-default":["Inter"],"num-kpi":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"]},"fontSize":{"display-hero":["38px",{"lineHeight":"44px","letterSpacing":"-0.03em","fontWeight":"700"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"num-table":["13px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-kpi-mobile":["24px",{"lineHeight":"30px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-kpi":["30px",{"lineHeight":"36px","letterSpacing":"-0.025em","fontWeight":"700"}],"label-caps":["11px",{"lineHeight":"14px","letterSpacing":"0.05em","fontWeight":"600"}],"title-md":["16px",{"lineHeight":"22px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-card":["18px",{"lineHeight":"24px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-badge":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"600"}],"body-medium":["14px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"500"}],"body-default":["14px",{"lineHeight":"20px","letterSpacing":"-0.005em","fontWeight":"400"}],"num-kpi":["26px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"display-hero-mobile":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-canvas-bg font-body-default text-ink-primary antialiased min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-canvas-subtle/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(33,27,37,0.04)]"><div class="h-20 max-w-7xl mx-auto px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="AyundaShop Finance Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WgESIeadLnxdBiXQofs4YtaHlZzS_D2vzZpuPHimQl0zfdU6LCbLDbbg89Y2P7xWbOiLBP9OeoizSnQPrMw_mHXLH1BH9ZepTKcEzMx2RS1eTAFutrbiGp9k92HqOeuDd24pG-I4uPWY-Tld4AHHE2ZiaMe3TvdhsmFq7PbLXphvqdjwZBPXXnhwbZHyPTVbx1u2ioOpZUcfgMmYLJGjYz_zOqcEDLdadZ7W0jefqD1IwfIFR817kYTAfr"/><span class="font-title-md text-title-md text-ink-primary hidden sm:inline-block tracking-tight">AyundaShop <span class="text-primary font-bold">Finance</span></span></div><div class="h-6 w-px bg-border-hairline hidden md:block"></div><nav class="hidden lg:flex items-center p-1 bg-canvas-bg rounded-lg" data-active-classes="bg-surface-card-elevated text-ink-primary shadow-[0_1px_3px_rgba(33,27,37,0.06)] font-semibold"><a class="px-space-md py-1.5 rounded-lg text-ink-secondary hover:text-ink-primary font-body-medium text-body-medium transition-all" data-path="overview" href="#">Overview</a><a class="px-space-md py-1.5 rounded-lg text-ink-secondary hover:text-ink-primary font-body-medium text-body-medium transition-all" data-path="rekap-bulanan" href="#">Rekap Bulanan</a><a class="px-space-md py-1.5 rounded-lg text-ink-secondary hover:text-ink-primary font-body-medium text-body-medium transition-all" data-path="laporan-keuangan" href="#">Laporan Keuangan</a></nav></div><div class="flex items-center gap-space-sm"><div class="hidden xl:flex items-center gap-space-xs px-space-md py-1.5 bg-surface-card rounded-lg"><span class="font-label-caps text-label-caps uppercase text-ink-tertiary">Periode Aktif:</span><div class="flex items-center gap-1 font-body-medium text-body-medium text-ink-primary cursor-pointer hover:text-primary transition-colors"><span class="font-semibold">Oktober 2024</span><span class="material-symbols-outlined text-[16px] text-ink-secondary">expand_more</span></div></div><div class="hidden md:flex items-center gap-space-xs"><button class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-lg bg-surface-card text-ink-secondary hover:text-ink-primary font-body-sm text-body-sm transition-all shadow-[0_1px_2px_rgba(33,27,37,0.04)]" type="button"><span class="material-symbols-outlined text-[16px]">file_download</span><span class="">Ekspor CSV</span></button><button class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-lg bg-surface-card text-ink-secondary hover:text-ink-primary font-body-sm text-body-sm transition-all shadow-[0_1px_2px_rgba(33,27,37,0.04)]" type="button"><span class="material-symbols-outlined text-[16px]">cloud_upload</span><span class="">Backup JSON</span></button><button class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-lg bg-surface-card text-ink-secondary hover:text-ink-primary font-body-sm text-body-sm transition-all shadow-[0_1px_2px_rgba(33,27,37,0.04)]" type="button"><span class="material-symbols-outlined text-[16px]">cloud_download</span><span class="">Restore JSON</span></button></div><button class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-kpi-burnt-orange text-on-primary hover:bg-primary transition-all font-body-medium text-body-medium shadow-[0_1px_3px_rgba(233,81,43,0.25)]" type="button"><span class="material-symbols-outlined text-[18px]">add_circle</span><span class="font-semibold whitespace-nowrap">+ Tambah / Update Toko</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-canvas-bg min-h-screen"><div class="flex flex-col w-full overflow-hidden">
+<!-- HERO SECTION -->
+<section class="relative px-gutter py-space-xl lg:py-space-2xl max-w-7xl mx-auto w-full">
+<!-- Ambient Blur Background Elements -->
+<div class="absolute -top-16 right-4 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-1/2 left-2 w-80 h-80 bg-accent-teal/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Left Column: Copy & Value Proposition -->
+<div class="lg:col-span-7 flex flex-col items-start space-y-space-md">
+<!-- Eyebrow Badge -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-accent-teal-subtle text-accent-teal shadow-sm">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span class="font-label-badge text-label-badge uppercase tracking-wide">Platform Rekonsiliasi &amp; Finansial Multi-Store COD Terpercaya</span>
+</div>
+<!-- Headline -->
+<h1 class="font-display-hero text-display-hero text-ink-primary tracking-tight">
+          Kelola Profit Riil, <span class="text-kpi-burnt-orange">Mitigasi Retur COD</span>, dan Bagi Deviden Otomatis.
+        </h1>
+<!-- Subheadline -->
+<p class="font-body-default text-body-default text-ink-secondary max-w-2xl text-base leading-relaxed">
+          Solusi tutup buku finansial multi-toko tanpa pusing hitung manual. Lindungi kas bisnis dari defisit retur RTS dengan otomatisasi <span class="font-semibold text-ink-primary">Saver Buffer</span> dan skema deviden terukur <span class="font-semibold text-ink-primary">50:20:30</span>.
+        </p>
+<!-- CTA Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs w-full sm:w-auto">
+<a class="inline-flex items-center justify-center gap-2 px-space-lg py-3 rounded-lg bg-kpi-burnt-orange text-on-primary font-body-medium text-body-medium hover:bg-primary transition-all shadow-md hover:shadow-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+<span>Coba Demo Sekarang</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 px-space-lg py-3 rounded-lg bg-surface-card-elevated text-ink-primary font-body-medium text-body-medium hover:bg-canvas-subtle transition-all shadow-sm" href="#fitur-dan-alur">
+<span class="material-symbols-outlined text-[20px]">calculate</span>
+<span>Jelajahi Fitur &amp; Rumus</span>
+</a>
+</div>
+<!-- Trust Proof -->
+<div class="flex items-center gap-space-md pt-space-sm text-ink-secondary">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-label-badge text-[11px] shadow-sm">AY</div>
+<div class="w-8 h-8 rounded-full bg-accent-teal text-on-secondary flex items-center justify-center font-label-badge text-[11px] shadow-sm">NS</div>
+<div class="w-8 h-8 rounded-full bg-kpi-burnt-orange text-on-primary flex items-center justify-center font-label-badge text-[11px] shadow-sm">MD</div>
+<div class="w-8 h-8 rounded-full bg-surface-card text-ink-primary flex items-center justify-center font-label-badge text-[11px] shadow-sm">8+</div>
+</div>
+<p class="font-body-sm text-body-sm">
+            Dipercaya oleh <span class="font-semibold text-ink-primary">8+ Multi-Store Brand</span> dengan omzet COD <span class="font-semibold text-ink-primary">&gt; Rp 600 Juta/bulan</span>
+</p>
+</div>
+</div>
+<!-- Right Column: Interactive Bento Preview Mockup -->
+<div class="lg:col-span-5 relative">
+<div class="relative bg-surface-card rounded-xl p-space-lg shadow-xl space-y-space-md">
+<!-- Card Header Indicator -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-status-positive animate-pulse"></span>
+<span class="font-label-caps text-label-caps uppercase text-ink-tertiary">Live Store Simulation • 4 Toko</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-accent-teal-subtle text-accent-teal font-label-badge text-label-badge">Periode Okt 2024</span>
+</div>
+<!-- Hero Metric Tile inside Mockup -->
+<div class="bg-surface-card-elevated rounded-lg p-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps uppercase text-ink-secondary">Estimasi Laba Bersih Konsolidasi</span>
+<span class="inline-flex items-center gap-1 text-status-positive font-label-badge text-label-badge bg-accent-teal-subtle px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 23.8% Margin
+              </span>
+</div>
+<div class="font-num-kpi text-num-kpi text-kpi-burnt-orange mt-1">Rp 148.850.000</div>
+<div class="font-body-sm text-body-sm text-ink-tertiary mt-0.5">Setelah pemotongan RTS dan dividen tim operasional</div>
+<!-- Mini Inline Sparkline -->
+<div class="mt-space-sm h-12 w-full flex items-end gap-1.5 pt-2">
+<div class="flex-1 bg-accent-teal/20 rounded-t h-[40%] hover:bg-accent-teal transition-all"></div>
+<div class="flex-1 bg-accent-teal/25 rounded-t h-[65%] hover:bg-accent-teal transition-all"></div>
+<div class="flex-1 bg-accent-teal/35 rounded-t h-[55%] hover:bg-accent-teal transition-all"></div>
+<div class="flex-1 bg-accent-teal/50 rounded-t h-[80%] hover:bg-accent-teal transition-all"></div>
+<div class="flex-1 bg-kpi-burnt-orange/80 rounded-t h-[95%] hover:bg-kpi-burnt-orange transition-all"></div>
+<div class="flex-1 bg-kpi-burnt-orange rounded-t h-[100%]"></div>
+</div>
+</div>
+<!-- Two Modular Sub-cards inside Hero Mockup -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- RTS Coverage Buffer -->
+<div class="bg-surface-card-elevated rounded-lg p-space-sm shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-ink-secondary font-label-caps text-label-caps uppercase">
+<span class="material-symbols-outlined text-[14px] text-accent-teal">shield</span>
+<span>Saver Buffer RTS</span>
+</div>
+<div class="font-headline-card text-headline-card text-ink-primary mt-1">83.7%</div>
+</div>
+<div class="w-full bg-canvas-bg rounded-full h-1.5 mt-2 overflow-hidden">
+<div class="bg-accent-teal h-full rounded-full w-[83.7%]"></div>
+</div>
+<span class="font-body-sm text-[11px] text-ink-tertiary mt-1">Aman dari klaim ekspedisi</span>
+</div>
+<!-- Dividen Ratio Split -->
+<div class="bg-surface-card-elevated rounded-lg p-space-sm shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-1 text-ink-secondary font-label-caps text-label-caps uppercase">
+<span class="material-symbols-outlined text-[14px] text-tertiary">pie_chart</span>
+<span>Skema Dividen</span>
+</div>
+<div class="font-headline-card text-headline-card text-ink-primary mt-1">50 : 20 : 30</div>
+</div>
+<div class="flex gap-1 mt-2">
+<div class="h-1.5 rounded-full bg-accent-teal flex-[5]" title="Management 50%"></div>
+<div class="h-1.5 rounded-full bg-tertiary flex-[2]" title="CS Team 20%"></div>
+<div class="h-1.5 rounded-full bg-kpi-burnt-orange flex-[3]" title="Owner 30%"></div>
+</div>
+<span class="font-body-sm text-[11px] text-ink-tertiary mt-1">Alokasi otomatis &amp; adil</span>
+</div>
+</div>
+<!-- Mini Status Footer -->
+<div class="flex items-center justify-between pt-1 text-ink-secondary font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-status-positive">lock</span> Local-First Encrypted
+            </span>
+<span class="text-ink-tertiary">Formula SOP Keuangan v2.4</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROBLEM VS SOLUTION BENTO GRID -->
+<section class="w-full bg-canvas-subtle py-space-2xl px-gutter">
+<div class="max-w-7xl mx-auto space-y-space-xl">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="space-y-space-xs max-w-xl">
+<div class="inline-flex items-center gap-1 px-space-sm py-1 rounded bg-kpi-burnt-orange-subtle text-kpi-burnt-orange font-label-badge text-label-badge">
+            MENGAPA AYUNDASHOP FINANCE?
+          </div>
+<h2 class="font-headline-kpi text-headline-kpi text-ink-primary tracking-tight">
+            Arsitektur Finansial yang Dibuat Khusus Karakteristik COD Indonesia
+          </h2>
+</div>
+<p class="font-body-default text-body-default text-ink-secondary max-w-md">
+          Berhenti menebak-nebak apakah omzet COD Anda benar-benar menghasilkan laba bersih atau sekadar perputaran modal semu yang habis dimakan retur barang.
+        </p>
+</div>
+<!-- Bento Grid (4 Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-lg">
+<!-- Card 1: Tutup Buku Otomatis -->
+<div class="lg:col-span-6 bg-surface-card rounded-xl p-space-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="w-12 h-12 rounded-lg bg-kpi-burnt-orange-subtle text-kpi-burnt-orange flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[26px]">receipt_long</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase text-kpi-burnt-orange">Efisiensi Tutup Buku</span>
+<h3 class="font-headline-card text-headline-card text-ink-primary mt-1 mb-2">Tutup Buku Otomatis &amp; Cepat</h3>
+<p class="font-body-default text-body-default text-ink-secondary leading-relaxed">
+              Tidak ada lagi spreadsheet berantakan dan selisih mutasi COD antar ekspedisi. Rekonsiliasi omzet mingguan Shopee, TikTok Shop, dan kurir COD selesai dalam hitungan menit tanpa formula manual yang rawan rusak.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-md bg-canvas-bg rounded-lg p-space-md flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-ink-secondary">Pangkas waktu audit bulanan</span>
+<span class="font-title-md text-title-md text-kpi-burnt-orange font-semibold">−78% Waktu Kerja</span>
+</div>
+</div>
+<!-- Card 2: Proteksi Risiko Retur RTS -->
+<div class="lg:col-span-6 bg-surface-card rounded-xl p-space-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="w-12 h-12 rounded-lg bg-accent-teal-subtle text-accent-teal flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[26px]">security</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase text-accent-teal">Risk Management Engine</span>
+<h3 class="font-headline-card text-headline-card text-ink-primary mt-1 mb-2">Proteksi Risiko Retur RTS (Saver COD)</h3>
+<p class="font-body-default text-body-default text-ink-secondary leading-relaxed">
+              Alokasi cadangan likuiditas 30%–50% otomatis untuk mengamankan kas operasional saat retur paket menumpuk di gudang ekspedisi. Uang kas operasional Anda tetap terlindungi tanpa krisis likuiditas mendadak.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-md bg-canvas-bg rounded-lg p-space-md flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-ink-secondary">Ambang proteksi kas darurat</span>
+<span class="font-title-md text-title-md text-accent-teal font-semibold">Dynamic Auto-Buffer</span>
+</div>
+</div>
+<!-- Card 3: Skema Dividen Transparan -->
+<div class="lg:col-span-6 bg-surface-card rounded-xl p-space-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="w-12 h-12 rounded-lg bg-accent-purple-subtle text-accent-purple flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[26px]">balance</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase text-accent-purple">Alokasi Insentif &amp; Equity</span>
+<h3 class="font-headline-card text-headline-card text-ink-primary mt-1 mb-2">Skema Dividen Transparan (50:20:30)</h3>
+<p class="font-body-default text-body-default text-ink-secondary leading-relaxed">
+              Bagi hasil adil dan transparan untuk Management (50%), Tim CS (20%), dan Owner (30%) tanpa perdebatan. Setiap pihak memantau angka riil setelah beban iklan Meta Ads dan logistik diperhitungkan secara akurat.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-md bg-canvas-bg rounded-lg p-space-md flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-ink-secondary">Transparansi hak tim &amp; investor</span>
+<span class="font-title-md text-title-md text-accent-purple font-semibold">Nol Selisih Persepsi</span>
+</div>
+</div>
+<!-- Card 4: Privasi Data Terjamin (Local-First) -->
+<div class="lg:col-span-6 bg-surface-card rounded-xl p-space-xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="w-12 h-12 rounded-lg bg-canvas-bg text-ink-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[26px]">database</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase text-ink-secondary">Kedaulatan Finansial Penuh</span>
+<h3 class="font-headline-card text-headline-card text-ink-primary mt-1 mb-2">Privasi Data Terjamin (Local-First)</h3>
+<p class="font-body-default text-body-default text-ink-secondary leading-relaxed">
+              Data laporan keuangan dan omzet Anda tersimpan aman di browser lokal Anda. Dilengkapi fitur Backup JSON instan dan Export CSV fleksibel agar data sensitif bisnis Anda tidak pernah bocor ke server pihak ketiga.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-md bg-canvas-bg rounded-lg p-space-md flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-ink-secondary">Portabilitas &amp; Keamanan</span>
+<span class="font-title-md text-title-md text-ink-primary font-semibold">100% Client-Side Privacy</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FITUR UTAMA & 3 ALUR TERINTEGRASI -->
+<section class="w-full py-space-2xl px-gutter max-w-7xl mx-auto space-y-space-2xl" id="fitur-dan-alur">
+<div class="text-center max-w-3xl mx-auto space-y-space-xs">
+<span class="font-label-badge text-label-badge text-accent-teal uppercase tracking-widest bg-accent-teal-subtle px-space-md py-1 rounded-full">
+        WORKFLOW OPERASIONAL KEUANGAN
+      </span>
+<h2 class="font-headline-kpi text-headline-kpi text-ink-primary">
+        Tiga Alur Terintegrasi Dari Input Hingga Keputusan Eksekutif
+      </h2>
+<p class="font-body-default text-body-default text-ink-secondary">
+        Struktur alur kerja dirancang menyerupai standar audit kantor akuntan publik, disederhanakan untuk eksekusi kilat tim toko online Anda.
+      </p>
+</div>
+<!-- 3 Flow Sections with Alternating Layout -->
+<div class="space-y-space-xl">
+<!-- Alur 1: Workspace Rekap Bulanan 4-Kolom -->
+<div class="bg-surface-card rounded-xl p-space-lg lg:p-space-xl shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<div class="lg:col-span-5 space-y-space-sm">
+<div class="inline-flex items-center gap-2 font-label-caps text-label-caps text-kpi-burnt-orange bg-kpi-burnt-orange-subtle px-space-sm py-1 rounded">
+<span>ALUR 01</span> • <span>MODULAR INPUT WORKSPACE</span>
+</div>
+<h3 class="font-headline-kpi text-[24px] text-ink-primary leading-tight">
+            Workspace Rekap Bulanan 4-Kolom Modular
+          </h3>
+<p class="font-body-default text-body-default text-ink-secondary">
+            Catat omzet 4 pekan kalender secara terpisah, lacak alokasi budget Meta Ads secara presisi, dan pantau pengembalian barang retur (RTS) secara real-time. Setiap minggu memiliki baris auditnya sendiri.
+          </p>
+<ul class="space-y-2 pt-2 text-ink-secondary font-body-sm text-body-sm">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-positive text-[18px]">check_circle</span>
+              Pemisahan otomatis omzet COD vs Transfer Bank
+            </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-positive text-[18px]">check_circle</span>
+              Kalkulasi ROAS iklan langsung terhadap net cashflow
+            </li>
+</ul>
+</div>
+<div class="lg:col-span-7 bg-surface-card-elevated rounded-xl p-space-md shadow-inner space-y-space-sm">
+<div class="flex items-center justify-between text-ink-secondary font-label-caps text-label-caps pb-2">
+<span>TOKO: AYUNDA OFFICIAL - OKTOBER 2024</span>
+<span class="text-accent-teal font-semibold">STATUS: TEREKONSILIASI</span>
+</div>
+<!-- Mini UI Table Simulation -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-canvas-bg font-label-caps text-[11px] text-ink-tertiary">
+<th class="p-2">PEKAN</th>
+<th class="p-2">OMZET COD</th>
+<th class="p-2">BIAYA ADS</th>
+<th class="p-2">RETUR RTS</th>
+<th class="p-2 text-right">NET CAIR</th>
+</tr>
+</thead>
+<tbody class="font-num-table text-num-table text-ink-primary">
+<tr class="hover:bg-canvas-subtle transition-colors">
+<td class="p-2 font-medium">Minggu 1</td>
+<td class="p-2">Rp 42.500.000</td>
+<td class="p-2 text-kpi-burnt-orange">Rp 8.200.000</td>
+<td class="p-2 text-status-negative">Rp 3.100.000</td>
+<td class="p-2 text-right text-status-positive font-semibold">Rp 31.200.000</td>
+</tr>
+<tr class="hover:bg-canvas-subtle transition-colors">
+<td class="p-2 font-medium">Minggu 2</td>
+<td class="p-2">Rp 51.200.000</td>
+<td class="p-2 text-kpi-burnt-orange">Rp 9.500.000</td>
+<td class="p-2 text-status-negative">Rp 4.250.000</td>
+<td class="p-2 text-right text-status-positive font-semibold">Rp 37.450.000</td>
+</tr>
+<tr class="hover:bg-canvas-subtle transition-colors">
+<td class="p-2 font-medium">Minggu 3</td>
+<td class="p-2">Rp 48.900.000</td>
+<td class="p-2 text-kpi-burnt-orange">Rp 8.900.000</td>
+<td class="p-2 text-status-negative">Rp 3.800.000</td>
+<td class="p-2 text-right text-status-positive font-semibold">Rp 36.200.000</td>
+</tr>
+<tr class="hover:bg-canvas-subtle transition-colors">
+<td class="p-2 font-medium">Minggu 4</td>
+<td class="p-2">Rp 62.300.000</td>
+<td class="p-2 text-kpi-burnt-orange">Rp 11.400.000</td>
+<td class="p-2 text-status-negative">Rp 4.600.000</td>
+<td class="p-2 text-right text-status-positive font-semibold">Rp 46.300.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Alur 2: Waterfall Cash Flow & SOP v2.4 -->
+<div class="bg-surface-card rounded-xl p-space-lg lg:p-space-xl shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<div class="lg:col-span-7 order-2 lg:order-1 bg-surface-card-elevated rounded-xl p-space-md shadow-inner space-y-space-sm">
+<div class="font-label-caps text-label-caps text-ink-tertiary">WATERFALL AUDIT VISUALIZATION</div>
+<div class="space-y-2.5 pt-1">
+<div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-ink-primary font-medium">1. Bruto COD Masuk Rekening</span>
+<span class="font-num-table font-semibold text-accent-teal">+ Rp 204.900.000</span>
+</div>
+<div class="w-full bg-canvas-bg h-2 rounded-full mt-1">
+<div class="bg-accent-teal h-2 rounded-full w-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-ink-secondary">2. Beban Iklan Meta &amp; HPP Barang</span>
+<span class="font-num-table font-semibold text-kpi-burnt-orange">− Rp 76.200.000</span>
+</div>
+<div class="w-full bg-canvas-bg h-2 rounded-full mt-1">
+<div class="bg-kpi-burnt-orange h-2 rounded-full w-[37%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-ink-secondary">3. Absorpsi Retur RTS Realisasi</span>
+<span class="font-num-table font-semibold text-status-negative">− Rp 15.750.000</span>
+</div>
+<div class="w-full bg-canvas-bg h-2 rounded-full mt-1">
+<div class="bg-status-negative h-2 rounded-full w-[8%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-ink-secondary">4. Alokasi Cadangan Baru (Saver Buffer)</span>
+<span class="font-num-table font-semibold text-accent-purple">− Rp 20.490.000</span>
+</div>
+<div class="w-full bg-canvas-bg h-2 rounded-full mt-1">
+<div class="bg-accent-purple h-2 rounded-full w-[10%]"></div>
+</div>
+</div>
+<div class="pt-2">
+<div class="flex justify-between font-title-md text-title-md">
+<span class="text-ink-primary font-bold">Laba Bersih Siap Bagi Deviden</span>
+<span class="font-num-kpi text-num-kpi text-kpi-burnt-orange">Rp 92.460.000</span>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 order-1 lg:order-2 space-y-space-sm">
+<div class="inline-flex items-center gap-2 font-label-caps text-label-caps text-accent-teal bg-accent-teal-subtle px-space-sm py-1 rounded">
+<span>ALUR 02</span> • <span>TRANSPARANSI AUDIT WATERFALL</span>
+</div>
+<h3 class="font-headline-kpi text-[24px] text-ink-primary leading-tight">
+            Waterfall Cash Flow &amp; Laporan Audit Otomatis
+          </h3>
+<p class="font-body-default text-body-default text-ink-secondary">
+            Berdasarkan formula standar SOP Keuangan v2.4, sistem mengurai aliran dana dari bruto hingga laba bersih dengan tingkat ketelitian sen demi sen. Tak ada lagi uang kas yang hilang tanpa jejak.
+          </p>
+<div class="p-space-sm bg-accent-teal-subtle rounded-lg text-accent-teal font-body-sm text-body-sm flex items-start gap-2">
+<span class="material-symbols-outlined text-[20px] shrink-0">info</span>
+<span>Memastikan modal putar stok barang berikutnya tetap utuh saat ekspedisi mengalami lonjakan retur.</span>
+</div>
+</div>
+</div>
+<!-- Alur 3: Dashboard Konsolidasi Eksekutif -->
+<div class="bg-surface-card rounded-xl p-space-lg lg:p-space-xl shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
+<div class="lg:col-span-5 space-y-space-sm">
+<div class="inline-flex items-center gap-2 font-label-caps text-label-caps text-accent-purple bg-accent-purple-subtle px-space-sm py-1 rounded">
+<span>ALUR 03</span> • <span>EXECUTIVE INTELLIGENCE</span>
+</div>
+<h3 class="font-headline-kpi text-[24px] text-ink-primary leading-tight">
+            Dashboard Konsolidasi Eksekutif Multi-Store
+          </h3>
+<p class="font-body-default text-body-default text-ink-secondary">
+            Analisis tren laba 6 bulan secara konsolidasi, evaluasi kesehatan finansial per cabang toko online, dan bandingkan rasio margin antar kanal penjualan dalam satu layar terpadu.
+          </p>
+<div class="flex items-center gap-space-md pt-2">
+<div>
+<div class="font-headline-card text-headline-card text-ink-primary">4 Toko</div>
+<div class="font-body-sm text-body-sm text-ink-tertiary">Terkonsolidasi Otomatis</div>
+</div>
+<div class="w-px h-8 bg-canvas-bg"></div>
+<div>
+<div class="font-headline-card text-headline-card text-status-positive">99.4%</div>
+<div class="font-body-sm text-body-sm text-ink-tertiary">Skor Akurasi Rekonsiliasi</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 bg-surface-card-elevated rounded-xl p-space-md shadow-inner">
+<div class="flex items-center justify-between pb-3">
+<span class="font-label-caps text-label-caps text-ink-tertiary">KONTRIBUSI LABA BERSIH PER CABANG TOKO</span>
+<span class="font-label-badge text-label-badge text-ink-secondary">YTD 2024</span>
+</div>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-1">
+<span class="font-medium text-ink-primary">Ayunda Official (TikTok Shop)</span>
+<span class="font-num-table font-semibold text-kpi-burnt-orange">Rp 64.200.000 (43%)</span>
+</div>
+<div class="w-full bg-canvas-bg h-3 rounded-full overflow-hidden flex">
+<div class="bg-kpi-burnt-orange h-full w-[43%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-1">
+<span class="font-medium text-ink-primary">Ayunda Glow (Shopee Mall)</span>
+<span class="font-num-table font-semibold text-accent-teal">Rp 48.500.000 (32%)</span>
+</div>
+<div class="w-full bg-canvas-bg h-3 rounded-full overflow-hidden flex">
+<div class="bg-accent-teal h-full w-[32%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-1">
+<span class="font-medium text-ink-primary">Ayunda Muslimah (Tokopedia)</span>
+<span class="font-num-table font-semibold text-accent-purple">Rp 24.300.000 (16%)</span>
+</div>
+<div class="w-full bg-canvas-bg h-3 rounded-full overflow-hidden flex">
+<div class="bg-accent-purple h-full w-[16%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-body-sm text-body-sm mb-1">
+<span class="font-medium text-ink-primary">Direct COD Web Landing Page</span>
+<span class="font-num-table font-semibold text-ink-secondary">Rp 11.850.000 (9%)</span>
+</div>
+<div class="w-full bg-canvas-bg h-3 rounded-full overflow-hidden flex">
+<div class="bg-ink-secondary h-full w-[9%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- LIVE FORMULA & LOGIC TEASER (INTERACTIVE CALCULATOR TEASER) -->
+<section class="w-full bg-canvas-subtle py-space-2xl px-gutter">
+<div class="max-w-7xl mx-auto space-y-space-xl">
+<div class="text-center max-w-2xl mx-auto space-y-space-xs">
+<span class="font-label-badge text-label-badge text-kpi-burnt-orange uppercase tracking-widest bg-kpi-burnt-orange-subtle px-space-md py-1 rounded-full">
+          TRANSPARANSI LOGIKA FINANSIAL
+        </span>
+<h2 class="font-headline-kpi text-headline-kpi text-ink-primary">
+          Formula Presisi di Balik Setiap Angka
+        </h2>
+<p class="font-body-default text-body-default text-ink-secondary">
+          Bukan sekadar kalkulator biasa. Logika kami mengantisipasi selisih waktu antara pencairan dana ekspedisi dengan gelombang retur barang fisik.
+        </p>
+</div>
+<!-- Formula Grid Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Formula 1 -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-sm flex flex-col justify-between">
+<div>
+<div class="font-label-caps text-label-caps text-accent-teal uppercase">Langkah 1</div>
+<h4 class="font-title-md text-title-md text-ink-primary mt-1">COD Cair Masuk Rekening</h4>
+<p class="font-body-sm text-body-sm text-ink-secondary mt-1">
+              Total riil mutasi rekening bank dari pencairan ekspedisi (J&amp;T, Ninja, SiCepat, SAP).
+            </p>
+</div>
+<div class="bg-surface-card-elevated rounded p-2 text-center font-num-table text-ink-primary text-xs">
+            Net Mutasi = Gross Omzet − Ongkir Kurir − Fee Ekspedisi
+          </div>
+</div>
+<!-- Formula 2 -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-sm flex flex-col justify-between">
+<div>
+<div class="font-label-caps text-label-caps text-kpi-burnt-orange uppercase">Langkah 2</div>
+<h4 class="font-title-md text-title-md text-ink-primary mt-1">Alokasi Saver Buffer</h4>
+<p class="font-body-sm text-body-sm text-ink-secondary mt-1">
+              Penyisihan proteksi 10%–20% dari kas mingguan untuk cadangan likuiditas darurat.
+            </p>
+</div>
+<div class="bg-surface-card-elevated rounded p-2 text-center font-num-table text-ink-primary text-xs">
+            Saver Baru = Net Mutasi × Target Rasio Cadangan
+          </div>
+</div>
+<!-- Formula 3 -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-sm flex flex-col justify-between">
+<div>
+<div class="font-label-caps text-label-caps text-accent-purple uppercase">Langkah 3</div>
+<h4 class="font-title-md text-title-md text-ink-primary mt-1">Defisit RTS Absorpsi</h4>
+<p class="font-body-sm text-body-sm text-ink-secondary mt-1">
+              Kompensasi ongkos kirim hangus dan barang retur rusak diserap langsung oleh pool Saver.
+            </p>
+</div>
+<div class="bg-surface-card-elevated rounded p-2 text-center font-num-table text-ink-primary text-xs">
+            Net Saver = Saver Awal + Saver Baru − Total Defisit RTS
+          </div>
+</div>
+<!-- Formula 4 -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm space-y-space-sm flex flex-col justify-between">
+<div>
+<div class="font-label-caps text-label-caps text-status-positive uppercase">Langkah 4</div>
+<h4 class="font-title-md text-title-md text-ink-primary mt-1">Pembagian Deviden</h4>
+<p class="font-body-sm text-body-sm text-ink-secondary mt-1">
+              Laba bersih murni dibagi sesuai komitmen kontrak tim tanpa mengorbankan arus kas operasional.
+            </p>
+</div>
+<div class="bg-surface-card-elevated rounded p-2 text-center font-num-table text-ink-primary text-xs text-status-positive font-semibold">
+            Mgmt 50% | CS Team 20% | Owner 30%
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- TESTIMONIAL & METRIC HIGHLIGHTS -->
+<section class="w-full py-space-2xl px-gutter max-w-7xl mx-auto space-y-space-2xl">
+<!-- Stat Counter Bar -->
+<div class="bg-surface-card rounded-xl p-space-xl shadow-sm grid grid-cols-1 md:grid-cols-3 gap-space-lg text-center">
+<div class="space-y-1">
+<div class="font-headline-kpi text-headline-kpi text-kpi-burnt-orange">Rp 624.5 M+</div>
+<div class="font-body-default text-body-default text-ink-primary font-medium">Omzet COD Dikelola</div>
+<div class="font-body-sm text-body-sm text-ink-tertiary">Melalui 8+ brand multichannel terdaftar</div>
+</div>
+<div class="space-y-1 md:border-x md:border-border-hairline">
+<div class="font-headline-kpi text-headline-kpi text-accent-teal">83.7%</div>
+<div class="font-body-default text-body-default text-ink-primary font-medium">Mitigasi Risiko RTS</div>
+<div class="font-body-sm text-body-sm text-ink-tertiary">Tingkat keberhasilan proteksi modal likuiditas</div>
+</div>
+<div class="space-y-1">
+<div class="font-headline-kpi text-headline-kpi text-accent-purple">100% Cocok</div>
+<div class="font-body-default text-body-default text-ink-primary font-medium">Rekon &amp; Audit Bersih</div>
+<div class="font-body-sm text-body-sm text-ink-tertiary">Nol selisih antara mutasi bank vs sistem toko</div>
+</div>
+</div>
+<!-- Editorial Testimonials -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<div class="bg-surface-card-elevated rounded-xl p-space-xl shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-sm">
+<div class="flex text-status-warning">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-default text-body-default text-ink-primary italic">
+            “Dulu setiap tanggal 1 kami selalu tegang karena selisih uang COD dengan laporan admin CS bisa jutaan rupiah. Begitu pakai alur Saver Buffer AyundaShop Finance, risiko retur paket langsung terisolasi rapi dan pembagian deviden tim CS jadi sangat transparan.”
+          </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<div class="w-10 h-10 rounded-full bg-accent-teal text-on-secondary flex items-center justify-center font-bold">
+            DA
+          </div>
+<div>
+<div class="font-title-md text-title-md text-ink-primary">Dimas Arya Pratama</div>
+<div class="font-body-sm text-body-sm text-ink-secondary">Managing Partner • GlowVibe Nusantara (3 Toko COD)</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-card-elevated rounded-xl p-space-xl shadow-sm flex flex-col justify-between space-y-space-md">
+<div class="space-y-space-sm">
+<div class="flex text-status-warning">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-default text-body-default text-ink-primary italic">
+            “Fitur Local-First nya luar biasa. Kami tidak perlu khawatir data omzet dan strategi iklan kami bocor ke kompetitor. Backup JSON dan CSV nya sangat fleksibel ketika kami ingin mengolah data tambahan di Google Sheets.”
+          </p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<div class="w-10 h-10 rounded-full bg-kpi-burnt-orange text-on-primary flex items-center justify-center font-bold">
+            SR
+          </div>
+<div>
+<div class="font-title-md text-title-md text-ink-primary">Siti Rahmawati</div>
+<div class="font-body-sm text-body-sm text-ink-secondary">Chief Financial Officer • Ayunda Hijab Store</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- BOTTOM HIGH-IMPACT CTA BANNER -->
+<section class="w-full px-gutter py-space-2xl">
+<div class="max-w-7xl mx-auto relative rounded-2xl bg-ink-primary text-on-primary p-space-xl lg:p-space-2xl overflow-hidden shadow-2xl">
+<!-- Burnt Orange Ambient Glow in Banner -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-kpi-burnt-orange/25 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-20 -top-20 w-80 h-80 bg-accent-teal/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-space-xl">
+<div class="space-y-space-sm max-w-2xl text-center lg:text-left">
+<div class="inline-flex items-center gap-2 px-space-md py-1 rounded-full bg-surface-card/10 text-primary-fixed font-label-caps text-label-caps uppercase">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+            Sistem Siap Digunakan Tanpa Registrasi Rumit
+          </div>
+<h2 class="font-display-hero text-display-hero text-on-primary tracking-tight">
+            Mulai Rekonsiliasi Finansial Bisnis Anda Hari Ini.
+          </h2>
+<p class="font-body-default text-body-default text-surface-container-high leading-relaxed text-base">
+            Tanpa instalasi rumit, data aman tersimpan langsung di browser Anda. Wujudkan kendali penuh atas laba riil toko online Anda sekarang juga.
+          </p>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-space-sm w-full lg:w-auto shrink-0">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-space-xl py-3.5 rounded-lg bg-kpi-burnt-orange text-on-primary font-body-medium text-body-medium hover:bg-primary transition-all shadow-lg hover:shadow-xl" type="button">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+<span class="font-semibold whitespace-nowrap">Mulai Gunakan AyundaShop</span>
+</button>
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-space-lg py-3.5 rounded-lg bg-surface-card/10 text-on-primary hover:bg-surface-card/20 transition-all font-body-medium text-body-medium" type="button">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+<span class="whitespace-nowrap">Hubungi Tim Keuangan</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Client-side Micro-Interaction Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Highlight current page active link in header if applicable
+      const navLinks = document.querySelectorAll('header nav a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('data-path') === 'overview' || link.textContent.trim() === 'Overview') {
+          link.classList.add('bg-surface-card-elevated', 'text-ink-primary', 'font-semibold', 'shadow-sm');
+          link.classList.remove('text-ink-secondary');
+        }
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-canvas-subtle py-space-xl shadow-[0_-1px_6px_rgba(33,27,37,0.02)]"><div class="max-w-7xl mx-auto px-gutter flex flex-col md:flex-row items-center justify-between gap-space-md text-ink-tertiary font-body-sm text-body-sm"><div class="flex items-center gap-space-sm"><span class="font-semibold text-ink-secondary">AyundaShop Finance</span><span class="">•</span><span class="">Platform Rekonsiliasi &amp; Inteligensi Finansial Multi-Store</span></div><div class="flex items-center gap-space-lg"><span class="">Hak Cipta © 2024 PT Ayunda Retail Teknologi.</span><span class="text-status-positive flex items-center gap-1"><span class="inline-block w-2 h-2 rounded-full bg-status-positive"></span> Sistem Aktif</span></div></div></footer>
+</body></html>
